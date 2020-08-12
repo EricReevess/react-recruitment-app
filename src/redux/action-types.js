@@ -1,3 +1,10 @@
 /*
 * 包含多个action类型常量
 * */
+
+// const USER_REG_SUCCESS = 'USER_REG_SUCCESS'
+const USER_AUTH_SUCCESS = 'USER_AUTH_SUCCESS'
+const ERROR_MSG = 'ERROR_MSG'
+const SENT_REQ = 'SENT_REQUEST'
+
+export {USER_AUTH_SUCCESS, ERROR_MSG, SENT_REQ}

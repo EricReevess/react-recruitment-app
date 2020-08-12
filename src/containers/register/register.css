@@ -1,0 +1,8 @@
+.am-radio{
+    padding: 4px;
+    margin-left: 10px;
+    margin-right: 5px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+}
