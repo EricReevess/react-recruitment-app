@@ -6,7 +6,7 @@ import { register } from '../../redux/actions'
 import { connect } from 'react-redux'
 import Logo from '../../components/logo/logo'
 import { NavBar, WingBlank, WhiteSpace, List, InputItem, Radio, Button, Toast, NoticeBar } from 'antd-mobile'
-import './register.css'
+import './register.less'
 import { Redirect } from 'react-router-dom'
 
 const ListItem = List.Item
@@ -35,7 +35,7 @@ class Register extends Component {
     if (!(nameError && pwdError && pwd2Error) && isEmpty) {
       this.props.register(user)
     } else {
-      Toast.info('您输入的信息有误')
+      Toast.info('您输入的信息格式有误')
     }
 
     // if(this.props.user.msg !== ''){
@@ -105,9 +105,9 @@ class Register extends Component {
     }
 
   }
-  componentWillReceiveProps (nextProps, nextContext) {
-    const {isLoading} = nextProps.user
-    isLoading ? Toast.loading('加载中...',0):Toast.hide()
+  UNSAFE_componentWillReceiveProps (nextProps, nextContext) {
+    const {isRequesting} = nextProps.user
+    isRequesting ? Toast.loading('加载中...',0):Toast.hide()
   }
 
   render () {
@@ -175,9 +175,9 @@ class Register extends Component {
               <span>用户类型:</span>
               <Radio
                 className="my-radio"
-                checked={userType === 'jobSeeker'}
+                checked={userType === 'jobseeker'}
                 onChange={() => {
-                  this.handleChange('userType', 'jobSeeker')
+                  this.handleChange('userType', 'jobseeker')
                 }}>
                 求职者
               </Radio>

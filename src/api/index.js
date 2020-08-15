@@ -3,14 +3,20 @@
 * 返回值均为Promise对象*/
 import ajax from './ajax'
 
-const registerRequest = (user) => {
-  return ajax('POST', '/register', user)
-}
-const loginRequest = (user) => {
-  return ajax('POST', '/login', user)
-}
-const userUpdateRequest = (userInfo => {
-  return ajax('POST', '/user-update', userInfo)
-})
+const registerRequest = user => ajax('POST', '/register', user)
 
-export { registerRequest, loginRequest, userUpdateRequest  }
+const loginRequest = user => ajax('POST', '/login', user)
+
+const updateUserDataRequest = userInfo => ajax('POST', '/update-user-data', userInfo)
+
+const getUserDataRequest = () => ajax('GET', '/get-user-data')
+
+const getUsersListRequest = (userType) => ajax('GET', '/get-user-list', { userType })
+
+export {
+  registerRequest,
+  loginRequest,
+  updateUserDataRequest,
+  getUserDataRequest,
+  getUsersListRequest
+}

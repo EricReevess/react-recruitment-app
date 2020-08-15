@@ -57,17 +57,17 @@ class Login extends Component {
     }
 
   }
-  componentWillReceiveProps (nextProps, nextContext) {
-    const {isLoading} = nextProps.user
-    isLoading ? Toast.loading('登陆中...',0):Toast.hide()
+  UNSAFE_componentWillReceiveProps (nextProps, nextContext) {
+    const {isRequesting} = nextProps.user
+    isRequesting ? Toast.loading('登陆中...',0):Toast.hide()
   }
 
   render () {
     const {msg,redirectTo} = this.props.user
+    // 重定向路由，注册、登陆更新信息完成后的关键跳转
     if(redirectTo){
       return <Redirect to={redirectTo} />
     }
-
     return (
       <div>
         <NavBar>

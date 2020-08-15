@@ -18,7 +18,7 @@ ReactDOM.render((
       <Switch>
         <Route path='/register' component={Register}/>
         <Route path='/login' component={Login}/>
-        <Route component={Main}/> {/*默认组件*/}
+        <Route path='/' component={Main}/> {/*默认组件*/}
       </Switch>
     </HashRouter>
   </Provider>

@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default function ajax(method = 'GET', url = '', data = {}) {
   if (method === 'GET'){
-    return  axios.get('/user',{
+    return  axios.get(url,{
       params:{
         ...data
       }
