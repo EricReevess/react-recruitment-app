@@ -4,6 +4,7 @@ import { List, Icon, NavBar, InputItem, Button, Grid } from 'antd-mobile'
 import './chat.less'
 import { hasReadMessage, sendMessage } from '../../redux/actions'
 import emojis from './emojis'
+import QueueAnim from 'rc-queue-anim'
 
 const Item = List.Item
 const Brief = Item.Brief
@@ -31,8 +32,7 @@ class Chat extends Component {
         hasNewMsg: false
       })
     }
-
-
+    this.scrollScreenToBottom()
   }
 
   toggleShow = () => {
@@ -54,15 +54,21 @@ class Chat extends Component {
 
   }
 
+  scrollScreenToBottom = () => {
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight)
+    }, 0)
+
+  }
 
   componentDidMount () {
     const to_id = this.props.match.params.userId
-    window.scrollTo(0, document.body.scrollHeight)
     this.props.hasReadMessage(to_id)
+    this.scrollScreenToBottom()
   }
 
   componentDidUpdate (prevProps, prevState, snapshot) {
-    window.scrollTo(0, document.body.scrollHeight)
+    this.scrollScreenToBottom()
   }
 
   componentWillReceiveProps (nextProps, nextContext) {
@@ -110,30 +116,42 @@ class Chat extends Component {
             currentMessages.map(msg => {
               if (msg.from_id === from_id) {
                 return (
-                  <Item
+                  <QueueAnim
                     key={msg._id}
-                    className="massage-box-my"
-                    thumb={<img src={require(`../../assets/avatar-icon/${users[from_id].avatar}.png`)}
-                                className="avatar" alt="avatar"/>}
+                    onEnd={this.scrollScreenToBottom()}
 
-                    align="top"
-                    wrap>
-                    {msg.content}
-                    <Brief>{new Date(Number(msg.create_time)).toLocaleTimeString()}</Brief>
-                  </Item>
+                    type={'right'}
+                    component={Item}>
+                    <Item
+                      key={msg._id}
+                      className="massage-box-my"
+                      thumb={<img src={require(`../../assets/avatar-icon/${users[from_id].avatar}.png`)}
+                                  className="avatar" alt="avatar"/>}
+                      wrap>
+                      {msg.content}
+                      <Brief>{new Date(Number(msg.create_time)).toLocaleTimeString()}</Brief>
+                    </Item>
+                  </QueueAnim>
                 )
               } else {
                 return (
-                  <Item
+                  <QueueAnim
                     key={msg._id}
-                    thumb={<img src={require(`../../assets/avatar-icon/${users[to_id].avatar}.png`)} className="avatar"
-                                alt="avatar"/>}
+                    type={'left'}
+                    onEnd={this.scrollScreenToBottom()}
+                    component={Item}>
+                    <Item
+                      key={msg._id}
+                      thumb={<img src={require(`../../assets/avatar-icon/${users[to_id].avatar}.png`)}
+                                  className="avatar"
+                                  alt="avatar"/>}
 
-                    align="top"
-                    wrap>
-                    {msg.content}
-                    <Brief>{new Date(Number(msg.create_time)).toLocaleTimeString()}</Brief>
-                  </Item>
+
+                      wrap>
+                      {msg.content}
+                      <Brief>{new Date(Number(msg.create_time)).toLocaleTimeString()}</Brief>
+                    </Item>
+                  </QueueAnim>
                 )
               }
             })

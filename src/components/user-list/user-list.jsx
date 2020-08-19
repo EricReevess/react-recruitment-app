@@ -4,6 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 import { Card, WingBlank, WhiteSpace } from 'antd-mobile'
+import QueueAnim from 'rc-queue-anim'
 
 const Body = Card.Body
 const Header = Card.Header
@@ -13,31 +14,33 @@ const UserList = (props) => {
   const history = useHistory()
   const { userList } = props
   return (
-    <WingBlank size="lg" style={{marginBottom:50,marginTop:50}}>
-      {
-        userList.map(user => (
-          <div key={user._id} onClick={ _ => history.push(`/chat/${user._id}`)} >
-            <Card>
-              <Header
-                title={user.name}
-                thumb={require(`../../assets/avatar-icon/${user.avatar}.png`)}
-                extra={<span>{user.position}</span>}
-              />
-              <Body>
-                {user.companyInfo ? <div>公司：{user.companyInfo}</div>:null}
-                {}
-                <div>
-                  {user.userType === 'jobseeker' ? '期望':null}
-                  薪资：{user.salary}
-                </div>
-                <div>{user.userType === 'jobseeker' ? '个人简介':'岗位描述'}：{user.personalInfo}</div>
-              </Body>
-            </Card>
-            <WhiteSpace size="lg"/>
-          </div>
-        ))
-
-      }
+    <WingBlank size="lg" style={{ marginBottom: 50, marginTop: 50 }}>
+      <QueueAnim
+        type='scale'>
+        {
+          userList.map(user => (
+            <div key={user._id} onClick={_ => history.push(`/chat/${user._id}`)}>
+              <Card>
+                <Header
+                  title={user.name}
+                  thumb={require(`../../assets/avatar-icon/${user.avatar}.png`)}
+                  extra={<span>{user.position}</span>}
+                />
+                <Body>
+                  {user.companyInfo ? <div>公司：{user.companyInfo}</div> : null}
+                  {}
+                  <div>
+                    {user.userType === 'jobseeker' ? '期望' : null}
+                    薪资：{user.salary}
+                  </div>
+                  <div>{user.userType === 'jobseeker' ? '个人简介' : '岗位描述'}：{user.personalInfo}</div>
+                </Body>
+              </Card>
+              <WhiteSpace size="lg"/>
+            </div>
+          ))
+        }
+      </QueueAnim>
     </WingBlank>
   )
 }
@@ -47,7 +50,6 @@ UserList.propTypes = {
 }
 
 export default UserList
-
 
 
 /*export default class UserList extends Component {
