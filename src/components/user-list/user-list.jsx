@@ -2,19 +2,21 @@
 * 显示指定用户类型的列表*/
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useHistory } from 'react-router-dom'
 import { Card, WingBlank, WhiteSpace } from 'antd-mobile'
 
 const Body = Card.Body
 const Header = Card.Header
 
 const UserList = (props) => {
+  // 非路由组件，需要加入useHistory
+  const history = useHistory()
   const { userList } = props
   return (
     <WingBlank size="lg" style={{marginBottom:50,marginTop:50}}>
       {
         userList.map(user => (
-          <div key={user._id}>
-
+          <div key={user._id} onClick={ _ => history.push(`/chat/${user._id}`)} >
             <Card>
               <Header
                 title={user.name}

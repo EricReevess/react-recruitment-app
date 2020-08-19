@@ -1,0 +1,119 @@
+.chat {
+  .empty-chat{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+  }
+  .chat-list-show-pannel{
+    margin-top: 45px;
+    margin-bottom: 230px;
+  }
+  .avatar {
+    width: 35px !important;
+    height: 35px !important;
+
+  }
+
+  .chat-list {
+    margin-top: 45px;
+    margin-bottom: 50px;
+    .am-list-body{
+      border: none;
+    }
+
+  }
+
+
+  .am-list-item {
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-left: 10px;
+    background-color: #F5F5F9;
+    .am-list-line {
+
+      padding: 10px 12px 0 0;
+      div:not(:last-child) .am-list-line{
+        border: none;
+      }
+      .am-list-content {
+        font-size: 16px;
+      }
+
+      .am-list-brief {
+        font-size: 12px;
+        text-align: right;
+      }
+    }
+
+    .am-list-thumb:first-child {
+      margin: 10px 5px;
+    }
+
+    .am-input-extra {
+      font-size: 20px;
+      overflow: visible;
+    }
+  }
+
+  .massage-box-my {
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    padding-right: 10px;
+    padding-left: 0;
+
+    .am-list-line {
+      padding: 10px 0 0 12px;
+      flex-direction: row-reverse;
+
+      .am-list-content {
+        text-align: right;
+      }
+
+      .am-list-brief {
+        text-align: left;
+      }
+    }
+  }
+
+  .input {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+    .message-input {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+
+      .input-box {
+        background-color: #fff;
+        flex-basis: 80%;
+      }
+
+      .am-list-line {
+
+        padding: 10px 5px;
+      }
+
+      .send-msg-btn {
+        font-size: 16px;
+        flex-basis: 20%;
+        border-radius: 0;
+        line-height: 44px;
+      }
+    }
+
+    .emoji {
+      background-color: #fff;
+      .am-flexbox .am-flexbox-item .am-grid-item-content .am-grid-item-inner-content .am-grid-text {
+        margin-top: -10px;
+        font-size: 20px;
+      }
+    }
+  }
+
+
+}
+

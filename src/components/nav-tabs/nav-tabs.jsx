@@ -19,6 +19,7 @@ const NavTabs = (props) => {
               <TabItem
                 key={item.path}
                 title={item.text}
+                badge={item.path === '/message'? props.unreadMsgcount:null}
                 icon={{ uri: require(`./nav-icon/${item.icon}.png`) }}
                 selectedIcon={{ uri: require(`./nav-icon/${item.icon}-selected.png`) }}
                 selected={path === item.path}
@@ -31,7 +32,8 @@ const NavTabs = (props) => {
 }
 
 NavTabs.propTypes = {
-  customNavtabs: PropTypes.array.isRequired
+  customNavtabs: PropTypes.array.isRequired,
+  unreadMsgcount : PropTypes.number.isRequired
 }
 
 // 向外暴露添加添加了路由api的NavTabs

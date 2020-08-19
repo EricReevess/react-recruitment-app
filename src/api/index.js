@@ -3,20 +3,25 @@
 * 返回值均为Promise对象*/
 import ajax from './ajax'
 
-const registerRequest = user => ajax('POST', '/register', user)
+const requestRegister = user => ajax('POST', '/register', user)
 
-const loginRequest = user => ajax('POST', '/login', user)
+const requestLogin = user => ajax('POST', '/login', user)
 
-const updateUserDataRequest = userInfo => ajax('POST', '/update-user-data', userInfo)
+const requestUserUpdate = userInfo => ajax('POST', '/update-user-data', userInfo)
 
-const getUserDataRequest = () => ajax('GET', '/get-user-data')
+const requestUserData = () => ajax('GET', '/get-user-data')
 
-const getUsersListRequest = (userType) => ajax('GET', '/get-user-list', { userType })
+const requestUserList = (userType) => ajax('GET', '/get-user-list', { userType })
 
+const requestUserMsgData = () => ajax('GET','/get-msg-list')
+
+const reqMsgHasRead = (from_id) => ajax('POST', '/has-read-msg', { from_id })
 export {
-  registerRequest,
-  loginRequest,
-  updateUserDataRequest,
-  getUserDataRequest,
-  getUsersListRequest
+  requestRegister,
+  requestLogin,
+  requestUserUpdate,
+  requestUserData,
+  requestUserList,
+  requestUserMsgData,
+  reqMsgHasRead
 }

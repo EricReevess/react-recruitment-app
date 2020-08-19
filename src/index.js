@@ -4,7 +4,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './assets/index.css'
+import './assets/index.less'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import {Provider} from 'react-redux'
 import Register from './containers/register/register'

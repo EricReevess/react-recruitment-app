@@ -17,48 +17,49 @@ import Cookies from 'js-cookie'
 import NavTabs from '../../components/nav-tabs/nav-tabs'
 import { NavBar, Toast } from 'antd-mobile'
 import './main.less'
+import Chat from '../chat/chat'
 
 class Main extends Component {
 
   // 给组件类添加导航数据
   navList = [
     {
-      path:'/boss',
-      component:Boss,
+      path: '/boss',
+      component: Boss,
       title: '求职者列表',
-      icon:'jobseeker',
-      text:'求职列表'
+      icon: 'jobseeker',
+      text: '求职列表'
     },
     {
-      path:'/jobseeker',
-      component:Jobseeker,
+      path: '/jobseeker',
+      component: Jobseeker,
       title: '职位列表',
-      icon:'job',
-      text:'职位列表'
+      icon: 'job',
+      text: '职位列表'
     }
   ]
 
   publicNavList = [
     {
-      path:'/message',
-      component:Message,
+      path: '/message',
+      component: Message,
       title: '消息管理',
-      icon:'message',
-      text:'消息管理'
+      icon: 'message',
+      text: '消息管理'
     },
     {
-      path:'/personal',
-      component:Personal,
+      path: '/personal',
+      component: Personal,
       title: '个人中心',
-      icon:'person',
-      text:'个人中心'
+      icon: 'person',
+      text: '个人中心'
     },
   ]
 
   componentDidMount () {
     const userId = Cookies.get('userId')
-    const {_id} = this.props.user
-    if(userId && !_id){
+    const { _id } = this.props.user
+    if (userId && !_id) {
       // 发送登陆请求
       this.props.getUserData()
 
@@ -66,53 +67,55 @@ class Main extends Component {
   }
 
   UNSAFE_componentWillReceiveProps (nextProps, nextContext) {
-    const {isRequesting} = nextProps.user
-    isRequesting ? Toast.loading('加载中...',0):Toast.hide()
+    const { isRequesting } = nextProps.user
+    isRequesting ? Toast.loading('加载中...', 0) : Toast.hide()
   }
+
 
   render () {
     //导航守卫
     const userId = Cookies.get('userId')
     //如果cookie中userId不存在，重定向到登陆页面
-    if(!userId){
-      return <Redirect to={'/login'} />
+    if (!userId) {
+      return <Redirect to={'/login'}/>
     } else {
-      const {user} = this.props
+      const { user } = this.props
       //如果Redux中_id不存在，不显示任何数据
-      if(!user._id){
+      if (!user._id) {
         return null
       } else {
         let path = this.props.location.pathname
-        if(path === '/'){ // 如果请求的根路径，则检查信息是否完善，再跳转
+        if (path === '/') { // 如果请求的根路径，则检查信息是否完善，再跳转
           path = getRedirecUrl(user.userType, user.avatar)
-          return <Redirect to={path} />
+          return <Redirect to={path}/>
         }
       }
     }
 
-    const {navList,publicNavList} = this
-    const {user} = this.props
+    const { navList, publicNavList } = this
+    const { user } = this.props
     let path = this.props.location.pathname
-    const currentNavTabs = [...navList,...publicNavList].find(item => item.path === path)
+    const currentNavTabs = [...navList, ...publicNavList].find(item => item.path === path)
     const customNavtabs = [
-      navList.find(item => item.path ===`/${user.userType}`),
+      navList.find(item => item.path === `/${user.userType}`),
       ...publicNavList
     ]
 
     return (
       <div>
-        {currentNavTabs ?  <NavBar className="sticky-header">{currentNavTabs.title}</NavBar> : null}
+        {currentNavTabs ? <NavBar className="sticky-header">{currentNavTabs.title}</NavBar> : null}
         <Switch>
           {
-            [...navList,...publicNavList].map(item => (
-              <Route key={item.path} path={item.path} component={item.component} />
+            [...navList, ...publicNavList].map(item => (
+              <Route key={item.path} path={item.path} component={item.component}/>
             ))
           }
           <Route path='/boss-info' component={BossInfo}/>
           <Route path='/jobseeker-info' component={JobseekerInfo}/>
-          <Route component={NotFound} />
+          <Route path='/chat/:userId' component={Chat}/>
+          <Route component={NotFound}/>
         </Switch>
-        {currentNavTabs ? <NavTabs customNavtabs={customNavtabs} /> : null }
+        {currentNavTabs ? <NavTabs unreadMsgcount={this.props.unreadMsgcount} customNavtabs={customNavtabs}/> : null}
 
       </div>
     )
@@ -120,10 +123,11 @@ class Main extends Component {
 }
 
 export default connect(
-  state =>({
-    user:state.user
+  state => ({
+    user: state.user,
+    unreadMsgcount: state.chat.unreadMsgcount
   }),
-  {getUserData}
+  { getUserData }
 )(Main)
 
 /*
