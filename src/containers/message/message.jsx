@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Badge, List } from 'antd-mobile'
 import './message.less'
@@ -7,10 +8,9 @@ import QueueAnim from 'rc-queue-anim'
 const Item = List.Item
 const Brief = Item.Brief
 
-class Message extends Component {
+const Message = (props) => {
 
-
-  getLatestMsg = (chatMessages, user_id) => {
+  const getLatestMsg = (chatMessages, user_id) => {
     let latestMessagesObj = {}
     let latestMessagesArray = []
     chatMessages.forEach(msg => {
@@ -52,11 +52,10 @@ class Message extends Component {
     return latestMessagesArray.sort((a, b) => b.latestMsg.create_time - a.latestMsg.create_time)
   }
 
-  render () {
-
-    const { user } = this.props
-    const { users, chatMessages } = this.props.chat
-    const latestMessages = this.getLatestMsg(chatMessages, user._id)
+    const { user } = props
+    const history = useHistory()
+    const { users, chatMessages } = props.chat
+    const latestMessages = getLatestMsg(chatMessages, user._id)
 
     return (
       <List className="message">
@@ -70,7 +69,7 @@ class Message extends Component {
               :
               latestMessages.map(msg => (
                 <Item
-                  onClick={_ => this.props.history.push(`/chat/${msg.targetId}`)}
+                  onClick={() => history.push(`/chat/${msg.targetId}`)}
                   key={msg.targetId}
                   extra={<Badge text={msg.unreadCount}/>}
                   thumb={require(`../../assets/avatar-icon/${users[msg.targetId].avatar}.png`)}>
@@ -82,7 +81,6 @@ class Message extends Component {
         </QueueAnim>
       </List>
     )
-  }
 }
 
 export default connect(

@@ -95,15 +95,15 @@ class Main extends Component {
     const { navList, publicNavList } = this
     const { user } = this.props
     let path = this.props.location.pathname
-    const currentNavTabs = [...navList, ...publicNavList].find(item => item.path === path)
-    const customNavtabs = [
+    const currentNavInfo = [...navList, ...publicNavList].find(item => item.path === path)
+    const customNavTabs = [
       navList.find(item => item.path === `/${user.userType}`),
       ...publicNavList
     ]
 
     return (
       <div>
-        {currentNavTabs ? <NavBar className="sticky-header">{currentNavTabs.title}</NavBar> : null}
+        {currentNavInfo ? <NavBar className="sticky-header">{currentNavInfo.title}</NavBar> : null}
         <Switch>
           {
             [...navList, ...publicNavList].map(item => (
@@ -115,7 +115,7 @@ class Main extends Component {
           <Route path='/chat/:userId' component={Chat}/>
           <Route component={NotFound}/>
         </Switch>
-        {currentNavTabs ? <NavTabs unreadMsgcount={this.props.unreadMsgcount} customNavtabs={customNavtabs}/> : null}
+        {currentNavInfo ? <NavTabs unreadMsgcount={this.props.unreadMsgcount} customNavtabs={customNavTabs}/> : null}
 
       </div>
     )
@@ -130,8 +130,3 @@ export default connect(
   { getUserData }
 )(Main)
 
-/*
-* 实现自动登录
-* 如果cookie中有userid，则发请求获取对应的user，暂时不做跳转
-* 如果cookie中没有userId，则自动进入login界面
-* 若已经登录，先检查userType，是否完善信息(avatar)，再跳转到对应用户主界面*/

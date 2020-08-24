@@ -6,6 +6,7 @@ import { Button, NavBar, InputItem, TextareaItem, Toast } from 'antd-mobile'
 import AvatarSelector from '../../components/avatar-selector/avatar-selector'
 import { Redirect } from 'react-router-dom'
 import { updateUserData } from '../../redux/actions'
+import { getRedirecUrl } from '../../utils/redirect-route'
 
 class JobseekerInfo extends Component {
   state = {
@@ -61,7 +62,7 @@ class JobseekerInfo extends Component {
     const { userType, avatar } = this.props.user
     // 如果redux中有用户头像数据，则直接进入用户主页面
     if (avatar) {
-      const redirectpath = userType === 'boss' ? '/boss' : '/jobseeker'
+      const redirectpath = getRedirecUrl(userType,avatar)
       return <Redirect to={redirectpath}/>
     }
     const { name, position, salary, personalInfo } = this.state

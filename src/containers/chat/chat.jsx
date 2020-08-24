@@ -54,6 +54,11 @@ class Chat extends Component {
 
   }
 
+  onEnterKey = (e) => {
+    if(e.keyCode === 13){
+      this.handleSendMsg()
+    }
+  }
   scrollScreenToBottom = () => {
     setTimeout(() => {
       window.scrollTo(0, document.body.scrollHeight)
@@ -167,6 +172,7 @@ class Chat extends Component {
                 </span>
               }
               onChange={value => this.setState({ inputMsg: value })}
+              onKeyUp={this.onEnterKey}
               value={this.state.inputMsg}>
             </InputItem>
             <Button

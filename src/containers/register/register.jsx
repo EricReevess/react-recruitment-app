@@ -25,14 +25,14 @@ class Register extends Component {
   }
 
   registerHandler = () => {
-    const { nameError, pwdError, pwd2Error } = this.state
+    const { nameError, pwdError, pwd2Error,username, password, confirmPwd } = this.state
     const user = {
       username: this.state.username,
       password: this.state.password,
       userType: this.state.userType
     }
-    const isEmpty = user.username !== '' && user.password !== ''
-    if (!(nameError && pwdError && pwd2Error) && isEmpty) {
+    const hasContent = username && password && confirmPwd
+    if (!(nameError || pwdError || pwd2Error) && hasContent) {
       this.props.register(user)
     } else {
       Toast.info('您输入的信息格式有误')
@@ -134,11 +134,9 @@ class Register extends Component {
               value={this.state.username}
               error={this.state.nameError}
               onErrorClick={_ => this.onErrorClick('username')}
-              onBlur={value => {
-                this.handleValidate('username', value)
-              }}
               onChange={value => {
                 this.handleChange('username', value)
+                this.handleValidate('username', value)
               }}>
               用户名:
             </InputItem>
@@ -149,11 +147,9 @@ class Register extends Component {
               value={this.state.password}
               error={this.state.pwdError}
               onErrorClick={_ => this.onErrorClick('password')}
-              onBlur={value => {
-                this.handleValidate('password', value)
-              }}
               onChange={value => {
                 this.handleChange('password', value)
+                this.handleValidate('password', value)
               }}>
               密&nbsp;&nbsp;&nbsp;码:
             </InputItem>
@@ -163,11 +159,9 @@ class Register extends Component {
               value={this.state.confirmPwd}
               error={this.state.pwd2Error}
               onErrorClick={_ => this.onErrorClick('confirmPwd')}
-              onBlur={value => {
-                this.handleValidate('confirmPwd', value)
-              }}
               onChange={value => {
                 this.handleChange('confirmPwd', value)
+                this.handleValidate('confirmPwd', value)
               }}>
               确认密码:
             </InputItem>

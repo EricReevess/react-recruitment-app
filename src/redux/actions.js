@@ -75,6 +75,7 @@ const messageHasRead = (count, from_id) => ({
 })
 
 const logout = () => {
+  io.webSocket.close()
   return userStatusReset('你已经退出登录咯')
 }
 
@@ -183,7 +184,7 @@ const getUserList = (userType) => {
 const initWebSocket = (dispatch) => {
   if (!io.webSocket) {
     console.log('初始化WebSocket')
-    io.webSocket = io('ws://localhost:5000')
+    io.webSocket = io('ws://47.115.62.216:5000')
     io.webSocket.on('serverMsg', data => {
       dispatch(receiveSingleMsg(data))
     })

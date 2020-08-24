@@ -1,18 +1,16 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import UserList from '../../components/user-list/user-list'
 import { getUserList } from '../../redux/actions'
 
 
-class Boss extends Component {
+const Boss = (props) => {
 
-  componentDidMount () {
-    this.props.getUserList('jobseeker')
-  }
+  useEffect(() => {
+    props.getUserList('jobseeker')
+  },[])
 
-  render () {
-    return <UserList userList={this.props.userList}/>
-  }
+  return <UserList userList={props.userList}/>
 }
 
 export default connect(
