@@ -118,7 +118,7 @@ npm run build
   * 附加项：
     * 登陆cookie持久化，维持登陆一天
 
-  ![image-20200824150528879](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824150528879.png)
+  ![image-20200824150528879](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824150528879.png)
 
 * 注册页面
 
@@ -131,7 +131,7 @@ npm run build
     * 注册：发送请求并添加账户信息，并进入主页面
     * 登陆：跳转到登陆页面
 
-  ![image-20200824150608189](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824150608189.png)
+  ![image-20200824150608189](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824150608189.png)
 
 * 用户信息完善页面
 
@@ -157,7 +157,7 @@ npm run build
       * 多个默认头像选择按钮，点击即选择头像
       * 保存按钮，信息正确后调整到主页面
 
-    ![image-20200824151242712](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824151242712.png)
+    ![image-20200824151242712](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824151242712.png)
 
 ## 用户主页面
 
@@ -174,7 +174,7 @@ npm run build
   * 消息管理
   * 个人中心
 
-  ![image-20200824151924518](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824151924518.png)![image-20200824152025843](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824152025843.png)
+  ![image-20200824151924518](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824151924518.png)![image-20200824152025843](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824152025843.png)
 
 ## 个人中心页面
 
@@ -182,7 +182,7 @@ npm run build
 
 * 提供一个红色的注销按钮，点击后询问是否注销用户
 
-  ![image-20200824152054896](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824152054896.png)![image-20200824152103312](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824152103312.png)
+  ![image-20200824152054896](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824152054896.png)![image-20200824152103312](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824152103312.png)
 
 ## 消息页面
 
@@ -196,9 +196,9 @@ npm run build
   * 双方都可以发送即时消息
   * 双方能够发送表情
 
-  ![image-20200824152257988](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824152257988.png)![image-20200824152434867](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824152434867.png)
+  ![image-20200824152257988](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824152257988.png)![image-20200824152434867](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824152434867.png)
 
-  ![image-20200824152457445](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824152457445.png)
+  ![image-20200824152457445](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824152457445.png)
 
 ## 封装axios
 
@@ -793,15 +793,15 @@ const initWebSocket = (dispatch) => {
 
   * 获取用户与相关用户的最后一条聊天信息：处理chatMessages
 
-    ![image-20200824205442000](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824205442000.png)
+    ![image-20200824205442000](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824205442000.png)
 
     * 创建一个对象`latestMessagesObj`，遍历`chatMessages`数组，也就是单个元素为上图对象的数组，将每个chat_id创建为这个对象的一个属性，通过对比相同chat_id中的create_time字段，选择最后一个chat_id的信息
 
-      ![image-20200824213535812](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824213535812.png)
+      ![image-20200824213535812](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824213535812.png)
 
     * 然后使用for in 对对象的key进行遍历，将`latestMessagesObj`对象中每个chat_id中的内容推入数组中，再使用sort以内部最后一条信息的create_time来进行排序，得到接收消息时间降序的数组
 
-      ![image-20200824213601017](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824213601017.png)
+      ![image-20200824213601017](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824213601017.png)
 
       ```js
       const getLatestMsg = (chatMessages, user_id) => {
@@ -1010,7 +1010,7 @@ src
 
   * 当前用户与某个用户的聊天信息数据结构,chatMessages 为数组类型，内部包含多个聊天信息对象
 
-        ![image-20200824205442000](C:\Users\Fusion\AppData\Roaming\Typora\typora-user-images\image-20200824205442000.png)
+        ![image-20200824205442000](https://raw.githubusercontent.com/EricReevess/proxy/master/img/image-20200824205442000.png)
 
   * 修改指定消息为已读
 
