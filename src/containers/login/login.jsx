@@ -105,7 +105,7 @@ class Login extends Component {
           <WhiteSpace/>
           <Button type="primary" onClick={this.loginHandler}> 登 陆 </Button>
           <WhiteSpace/>
-          <Button onClick={this.toRegister}> 没有账户？ </Button>
+          <Button onClick={this.toRegister}> 没有账户？注册一个 </Button>
         </WingBlank>
       </div>
     )

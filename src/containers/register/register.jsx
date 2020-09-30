@@ -188,7 +188,7 @@ class Register extends Component {
           <WhiteSpace/>
           <Button type="primary" onClick={this.registerHandler}> 注 册 </Button>
           <WhiteSpace/>
-          <Button onClick={this.toLogin}> 已有账户？ </Button>
+          <Button onClick={this.toLogin}> 已有账户？到这登陆 </Button>
         </WingBlank>
       </div>
     )
