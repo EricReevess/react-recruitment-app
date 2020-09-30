@@ -41,7 +41,6 @@ const user = (state = initUser, action) => {
     case USER_UPDATE:
       return { ...state, ...action.data } // 此处返回后，直接进入主界面
     case USER_STATUS_RESET:
-      Cookies.remove('userId')
       return { ...initUser, msg: action.data }
     case ERROR_MSG:
       return { ...state, msg: action.data }

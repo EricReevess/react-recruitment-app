@@ -22,6 +22,7 @@ import {
   MESSAGE_HAS_READ
 } from './action-types'
 import io from 'socket.io-client'
+import Cookies from 'js-cookie'
 
 // 每个action-type都对应一个同步action
 const userAuthSuccess = (user) => ({
@@ -76,6 +77,9 @@ const messageHasRead = (count, from_id) => ({
 
 const logout = () => {
   io.webSocket.close()
+  io.webSocket = null
+  Cookies.remove('userId')
+  Cookies.remove('io')
   return userStatusReset('你已经退出登录咯')
 }
 
