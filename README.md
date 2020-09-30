@@ -1,5 +1,5 @@
 # Cube招聘移动Web应用(具有聊天功能)
-本应用使用 [Create React App](https://github.com/facebook/create-react-app) 初始化
+本应用使用  [Create React App](https://github.com/facebook/create-react-app) 初始化
 
 ## 项目地址
 
